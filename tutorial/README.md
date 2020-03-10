@@ -18,13 +18,16 @@ The overral connecting procedures are the same.
 ------------------------------------------------
 **A) Run the nodejs based starter signaling server**  
 Need to install the "ws" module first:  
+
 	npm install ws  
   
 Edit the file ws-server-vN.js and adjust to the IP ADDRESS of the machine where it will run.  
 Change the following line:  
+
 	const WEBSOCKET_ADDRESS = "192.168.100.1";  
   
 Then, run:  
+
 	node ws-server-vN.js  
   
 The "N" above is the actual version of the file.  
