@@ -16,7 +16,7 @@ The overral connecting procedures are the same.
 
 
 ------------------------------------------------
-A) Run the nodejs based starter signaling server
+**) Run the nodejs based starter signaling server**  
 Need to install the "ws" module first:
 	npm install ws
 
@@ -31,34 +31,34 @@ The "N" above is the actual version of the file.
 
 
 ----------------------------------------------
-B) Edit and Run the file p2p-av-B-browser.html
+**B) Edit and Run the file p2p-av-B-browser.html**  
 Edit this file and change the line:
 	const WEBSOCKET_ADDRESS = "192.168.100.1"
-	
+  	
 Then, open the file on your web browser (chromium, firefox, etc)
-
-
+  
+  
 ----------------------------------------------
-C) Edit and Run the file p2p-av-A-browser.html
+**C) Edit and Run the file p2p-av-A-browser.html**  
 Edit this file and change the line:
 	const WEBSOCKET_ADDRESS = "192.168.100.1"
-	
-Then, open the file on your web browser (chromium, firefox, etc)
-
+  	
+Then, open the file on your web browser (chromium, firefox, etc)  
+  
 -----
-DONE!
-
-
-
+DONE!  
+  
+  
+  
 ----------------
-FOR RASPBERRY PI
-I did the tutorial using a USB WebCam with built-in Microphone, so, before running the html files I had to make the USB WebCam Microphone as the "Default Sound Card".
-Click on MENU, then on PREFERENCES, then on AUDIO DEVICE SETTINGS.
-Make USB WebCam the default card.
-
-
+FOR RASPBERRY PI  
+I did the tutorial using a USB WebCam with built-in Microphone, so, before running the html files I had to make the USB WebCam Microphone as the "Default Sound Card".  
+Click on MENU, then on PREFERENCES, then on AUDIO DEVICE SETTINGS.  
+Make USB WebCam the default card.  
+  
+  
 --------------
-FIREWALL PORTS
+FIREWALL PORTS  
 WebRTC uses UDP ports on the ephemeral port range to communicate audio and video, so, I had to open these ports for inbound and outbound. If you are using ufw, then you should do something like these:
 
 	sudo ufw allow out 32768:60999/udp
