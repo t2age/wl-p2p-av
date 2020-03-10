@@ -1,0 +1,36 @@
+<html><body>
+    <h2>AV Peer B (guest)</h2>
+    <script src="simplepeer.min.js"></script>
+    
+    <video id="video" controls="true" autoplay="true" muted="muted" width="640" ></video>
+
+    <script>
+		const WEBSOCKET_ADDRESS = "192.168.100.1"
+		
+		var serverConn2
+		serverConn2 = new WebSocket('ws://' + WEBSOCKET_ADDRESS + ':9000')
+		serverConn2.onmessage = gotMessageFromServer2
+		
+		function gotMessageFromServer2(message) {
+		  var signal = JSON.parse(message.data)
+		  peerGuest.signal(signal.msg)
+		}
+		
+		const peerGuest = new SimplePeer({ initiator: false, trickle: false })
+		
+		peerGuest.on('error', err => console.log('error', err))
+		
+		peerGuest.on('signal', data => {
+		  try { serverConn2.send( JSON.stringify({'msg': data}) ) }
+		  catch (err) { console.log(err) }
+		})
+		
+		peerGuest.on('stream', stream => {
+			var video = document.querySelector('video')
+			video.srcObject = stream        
+			video.play()
+		})
+    </script>
+
+</body></html>
+

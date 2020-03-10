@@ -1,0 +1,35 @@
+<html><body>
+    <h2>AV Peer A (host)</h2>
+    
+    <script src="simplepeer.min.js"></script>
+    
+    <script>                 
+		const WEBSOCKET_ADDRESS = "192.168.100.1"
+		
+		var serverConn1;
+		serverConn1 = new WebSocket('ws://' + WEBSOCKET_ADDRESS + ':9000')
+		
+		navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(gotMedia)
+		
+		function gotMedia (stream) {
+		  serverConn1.onmessage = gotMessageFromServer
+		  
+		  const peerHost = new SimplePeer({
+			initiator: true, stream: stream, trickle: false
+		  })
+		
+		  peerHost.on('error', err => console.log('error', err))
+		
+		  peerHost.on('signal', data => {
+			try { setTimeout(function() { serverConn1.send( JSON.stringify({'msg': data}) )  }, 250) } 
+			catch (err) { console.log(err) }              
+		  })
+		
+		  function gotMessageFromServer(message) {
+			var signal = JSON.parse(message.data) 
+			peerHost.signal(signal.msg) 
+		  }  
+		}
+
+    </script>
+</body></html>
