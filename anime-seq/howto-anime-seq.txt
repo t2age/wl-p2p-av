@@ -1,0 +1,10 @@
+This is just a sequence of screenshots with intended interval of 1 second...
+
+Play: just display the sequence with a 1 second interval...
+
+Captured with scrot screencapture application.
+Like this:
+
+watch -n 1 scrot
+
+Created on a RPI3 Model, Raspbian Buster.
